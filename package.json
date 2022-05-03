@@ -10,7 +10,7 @@
     "on-release": "echo $RELEASE_TYPE",
     "prerelease": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
 
-    "release": "cross-env RELEASE_TYPE=patch echo \"$RELEASE_TYPE\" & yarn on-release",
+    "release": "cross-env RELEASE_TYPE=patch echo $RELEASE_TYPE & yarn on-release",
 
 
     "release2:patch": "cross-env RELEASE_TYPE=patch lerna exec \"yarn publish --access public --patch\"",

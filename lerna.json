@@ -2,8 +2,8 @@
     "packages": [
         "src/*"
     ],
-    "version": "1.5.0",
     "useWorkspaces": true,
     "npmClient": "yarn",
-    "npmPublish": true
+    "gitPublish": false,
+    "version":"independent"
 }

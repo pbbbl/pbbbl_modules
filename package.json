@@ -10,7 +10,7 @@
     "release:patch": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push && lerna version patch --yes --conventional-commits && lerna exec \"npm publish --access public\"",
     "release:minor": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push && lerna version minor --yes --conventional-commits && lerna exec \"npm publish --access public\"",
     "release:major": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push && lerna version major --yes --conventional-commits && lerna exec \"npm publish --access public\"",
-    "release": "yarn release:patch"
+    "release": "npm run release:patch"
   },
   "devDependencies": {
     "lerna": "^4.0.0"

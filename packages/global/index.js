@@ -9,8 +9,8 @@ const gmod = {
     name: 'global',
     key,valueToEncrypt,encrypted,decrypted,
 
-    // 1.4.0
-    version: '1.4.0',
+    // 1.4.1
+    version: '1.4.1', // version
 }
 
 console.log({gmod})

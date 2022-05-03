@@ -4,6 +4,10 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "prepub": "git add . && git commit -m \"prepublish\" && git push && lerna version --conventional-commits --yes",
+    "pub": "lerna exec \"npm publish --access public\""
+  },
   "devDependencies": {
     "lerna": "^4.0.0"
   }

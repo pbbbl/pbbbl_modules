@@ -5,6 +5,7 @@ const mod = {
     name: 'common',
     id: 'common-id',
     camelId: camel('common-id'),
+    // 1.4.0
     version: '1.4.0',
 }
 

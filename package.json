@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "prepub": "git add . && git commit -m \"prepublish\" && git push && lerna version --conventional-commits --yes",
+    "prepub": "git add . && git commit -m \"prepublish\" && git push && lerna version --conventional-commits",
     "pub": "lerna exec \"npm publish --access public\""
   },
   "devDependencies": {

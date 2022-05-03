@@ -5,7 +5,8 @@
     "packages/*"
   ],
   "scripts": {
-    "ver": "git add . && git commit -m \"prepublish\" && git push && lerna version --yes --conventional-commits",
+    "gitpush":"git add . && git commit -m \"prepublish\" && git push",
+    "ver": "lerna bootstrap && yarn gitpush && lerna version --yes --skip-git --no-push",
 
     "ver:patch": "lerna version patch",
     "ver:minor": "lerna version minor",

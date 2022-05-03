@@ -1,0 +1,13 @@
+{
+  "name": "@pbbbl/global",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tyler Grow",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "aes-256-gcm": "^1.0.3"
+  }
+}

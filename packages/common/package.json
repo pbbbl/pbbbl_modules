@@ -1,0 +1,14 @@
+{
+  "name": "@pbbbl/common",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tyler Grow",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "case": "^1.6.3",
+    "change-case-all": "^1.0.14"
+  }
+}

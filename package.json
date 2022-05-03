@@ -5,14 +5,12 @@
     "packages/*"
   ],
   "scripts": {
-    "gitpush": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
-    "ver": "lerna version --yes --conventional-commits",
-    "on-release": "echo $RELEASE_TYPE",
-    "prerelease": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
-    "release:patch": "lerna exec \"yarn publish --access public --patch\"",
-    "release:minor": "lerna exec \"yarn publish --access public --minor\"",
-    "release:major": "lerna exec \"yarn publish --access public --major\"",
-    "release": "dotenv-run-script echo \"$PATCH\""
+    "new-version": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
+    "release:patch": "yarn new-version && lerna exec \"yarn publish --access public --patch\"",
+    "release:minor": "yarn new-version && lerna exec \"yarn publish --access public --minor\"",
+    "release:major": "yarn new-version && lerna exec \"yarn publish --access public --major\"",
+    "release": "yarn release:patch",
+    "run-release":""
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

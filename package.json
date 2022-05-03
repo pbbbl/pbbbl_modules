@@ -5,13 +5,13 @@
     "packages/*"
   ],
   "scripts": {
-    "gitpush":"git add . && git commit -m \"prepublish\" && git push",
-    "ver": "lerna bootstrap && yarn gitpush && lerna version --yes --skip-git --no-push",
-    "release:patch": "yarn ver -- patch",
-    "release:minor": "yarn ver -- minor",
-    "release:major": "yarn ver -- major",
+    "gitpush":"lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
+    "ver": "lerna version --yes --conventional-commits",
+    "release:patch": "yarn gitpush && lerna version --yes --conventional-commits",
+    "release:minor": "yarn gitpush && lerna version --yes --conventional-commits",
+    "release:major": "yarn gitpush && lerna version --yes --conventional-commits",
     "release": "yarn release:patch",
-    "postrelease":"lerna exec \"npm publish --access public\""
+    "postrelease":"lerna exec \"yarn publish --access public\""
   },
   "devDependencies": {
     "lerna": "^4.0.0"

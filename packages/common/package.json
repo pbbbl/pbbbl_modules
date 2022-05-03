@@ -1,14 +1,15 @@
 {
   "name": "@pbbbl/common",
-  "version": "1.0.1",
+  "version": "1.1.0",
+  "description": "",
   "main": "index.js",
-  "author": "Tyler Grow",
-  "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "pub": "npm publish --access public"
   },
+  "author": "Tyler Grow",
+  "license": "ISC",
   "dependencies": {
-    "case": "^1.6.3",
     "change-case-all": "^1.0.14"
   }
 }

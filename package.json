@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "prerelease": "lerna bootstrap && lerna link && git add . && git commit -m \"pre-release\" && git push",
-    "release": "lerna exec \"yarn publish --patch --access public --no-git-tag-version --no-commit-hooks\"",
+    "release": "lerna run on-relase && lerna exec \"yarn publish --patch --access public --no-git-tag-version --no-commit-hooks\"",
     "release:patch": "lerna exec \"yarn publish --patch --access public --no-git-tag-version --no-commit-hooks\"",
     "release:minor": "lerna exec \"yarn publish --minor --access public --no-git-tag-version --no-commit-hooks\"",
     "release:major": "lerna exec \"yarn publish --major --access public --no-git-tag-version --no-commit-hooks\"",

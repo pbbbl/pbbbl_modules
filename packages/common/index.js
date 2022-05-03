@@ -6,7 +6,7 @@ const mod = {
     id: 'common-id',
     camelId: camel('common-id'),
 
-    version: '1.9.1', // version
+    version: '1.9.2', // version
 }
 
 console.log({mod})

@@ -5,8 +5,18 @@
     "packages/*"
   ],
   "scripts": {
-    "prepub": "git add . && git commit -m \"prepublish\" && git push && lerna version --conventional-commits",
-    "pub": "lerna exec \"npm publish --access public\""
+    "ver": "git add . && git commit -m \"prepublish\" && git push && lerna version --yes --conventional-commits",
+
+    "ver:patch": "lerna version patch",
+    "ver:minor": "lerna version minor",
+    "ver:major": "lerna version major",
+
+    "pub": "yarn ver -- patch",
+
+    "pub:patch": "yarn ver -- patch",
+    "pub:minor": "yarn ver -- minor",
+    "pub:major": "yarn ver -- major",
+    "postpub":"lerna exec \"npm publish --access public\""
   },
   "devDependencies": {
     "lerna": "^4.0.0"

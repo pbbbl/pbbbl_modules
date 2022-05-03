@@ -7,10 +7,11 @@
   "scripts": {
     "gitpush":"lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
     "ver": "lerna version --yes --conventional-commits",
-    "release:patch": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push && lerna version patch --yes --conventional-commits && lerna exec \"yarn publish --access public --patch\"",
-    "release:minor": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push && lerna version minor --yes --conventional-commits && lerna exec \"yarn publish --access public --minor\"",
-    "release:major": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push && lerna version major --yes --conventional-commits && lerna exec \"yarn publish --access public --major\"",
-    "release": "yarn release:patch"
+    "prerelease":"lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
+    "release:patch": "yarn on-release && lerna version patch --yes --conventional-commits && lerna exec \"yarn publish --access public --patch\"",
+    "release:minor": "yarn on-release && lerna version minor --yes --conventional-commits && lerna exec \"yarn publish --access public --minor\"",
+    "release:major": "yarn on-release && lerna version major --yes --conventional-commits && lerna exec \"yarn publish --access public --major\"",
+    "release": "yarn on-release && lerna version patch --yes --conventional-commits && lerna exec \"yarn publish --access public --patch\""
   },
   "devDependencies": {
     "lerna": "^4.0.0"

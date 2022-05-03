@@ -7,7 +7,7 @@
   "scripts": {
     "gitpush": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
     "ver": "lerna version --yes --conventional-commits",
-    "on-release": "lerna exec \"yarn publish --access public --$RELEASE_TYPE\"",
+    "on-release": "lerna exec \"yarn publish --access public $(--$RELEASE_TYPE)\"",
     "prerelease": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
     "release": "cross-env RELEASE_TYPE=patch & yarn on-release",
     "release:patch": "cross-env RELEASE_TYPE=patch & yarn on-release",

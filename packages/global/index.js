@@ -7,7 +7,9 @@ const encrypted = Aes.encrypt(valueToEncrypt, key);
 const decrypted = Aes.decrypt(encrypted.ciphertext,encrypted.iv,encrypted.tag,key);
 const gmod = {
     name: 'global',
-    key,valueToEncrypt,encrypted,decrypted
+    key,valueToEncrypt,encrypted,decrypted,
+
+    version: '1.2.2',
 }
 
 console.log({gmod})

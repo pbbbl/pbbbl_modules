@@ -5,10 +5,10 @@
     "packages/*"
   ],
   "scripts": {
-    "gh": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
-    "release:patch": "yarn gh && lerna exec \"yarn publish --access public --patch\"",
-    "release:minor": "yarn gh && lerna exec \"yarn publish --access public --minor\"",
-    "release:major": "yarn gh && lerna exec \"yarn publish --access public --major\"",
+    "on-release": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
+    "release:patch": "yarn on-release && lerna exec \"yarn publish --access public --patch\"",
+    "release:minor": "yarn on-release && lerna exec \"yarn publish --access public --minor\"",
+    "release:major": "yarn on-release && lerna exec \"yarn publish --access public --major\"",
     "release": "yarn release:patch",
     "run-release":""
   },

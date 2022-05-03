@@ -9,7 +9,7 @@ const gmod = {
     name: 'global',
     key,valueToEncrypt,encrypted,decrypted,
 
-    version: '1.2.2',
+    version: '1.4.0',
 }
 
 console.log({gmod})

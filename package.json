@@ -12,10 +12,11 @@
     "release:patch": "lerna exec \"yarn publish --access public --patch\"",
     "release:minor": "lerna exec \"yarn publish --access public --minor\"",
     "release:major": "lerna exec \"yarn publish --access public --major\"",
-    "release": "lerna exec \"yarn publish --access public --patch\""
+    "release": "dotenv-run-script echo \"$PATCH\""
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
+    "dotenv": "^16.0.0",
     "lerna": "^4.0.0"
   }
 }

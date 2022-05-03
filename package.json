@@ -7,12 +7,12 @@
   "scripts": {
     "gitpush": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
     "ver": "lerna version --yes --conventional-commits",
-    "on-release": "echo \"$RELEASE_TYPE\"",
+    "on-release": "echo $RELEASE_TYPE",
     "prerelease": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
-    "release": "cross-env RELEASE_TYPE=patch & yarn on-release",
-    "release:patch": "cross-env RELEASE_TYPE=patch echo \"$RELEASE_TYPE\" & yarn on-release",
-    "release:minor": "cross-env RELEASE_TYPE=minor & yarn on-release",
-    "release:major": "cross-env RELEASE_TYPE=major & yarn on-release",
+
+    "release": "cross-env RELEASE_TYPE=patch echo \"$RELEASE_TYPE\" & yarn on-release",
+
+
     "release2:patch": "cross-env RELEASE_TYPE=patch lerna exec \"yarn publish --access public --patch\"",
 "release2:minor": "cross-env RELEASE_TYPE=minor lerna exec \"yarn publish --access public --minor\"",
 "release2:major": "cross-env RELEASE_TYPE=major lerna exec \"yarn publish --access public --major\"",

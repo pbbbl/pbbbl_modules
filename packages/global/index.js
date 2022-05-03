@@ -10,7 +10,7 @@ const gmod = {
     key,valueToEncrypt,encrypted,decrypted,
 
     // 1.4.1
-    version: '1.4.1', // version
+    version: '1.4.2', // version
 }
 
 console.log({gmod})

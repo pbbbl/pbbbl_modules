@@ -11,7 +11,8 @@
     "prerelease": "lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
 
     "release3": "cross-env RELEASE_TYPE='--patch' && echo $RELEASE_TYPE",
-    "release": "cross-env RELEASE_TYPE=patch echo \"$RELEASE_TYPE\"",
+    "release": "cross-env GREET=\"Joe\" npm run childScript",
+    "childScript": "echo $GREET",
     "release2:patch": "lerna exec \"yarn publish --access public --patch\"",
 "release2:minor": "lerna exec \"yarn publish --access public --minor\"",
 "release2:major": "lerna exec \"yarn publish --access public --major\"",

@@ -1,21 +1,14 @@
 {
   "name": "@pbbbl/common",
-  "version": "1.5.0",
+  "version": "1.6.1",
   "description": "",
   "main": "index.js",
-  "private": false,
   "scripts": {
-    "start": "node index.js",
-    "pub": "npm publish --access public"
+    "start": "node index.js"
   },
   "author": "Tyler Grow",
   "license": "ISC",
   "dependencies": {
     "change-case-all": "^1.0.14"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/",
-    "directory":"dist"
   }
 }

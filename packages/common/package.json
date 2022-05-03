@@ -1,10 +1,14 @@
 {
   "name": "@pbbbl/common",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "release": "yarn publish --access public",
+    "release:patch": "yarn publish --patch --access public",
+    "release:minor": "yarn publish --minor --access public",
+    "release:major": "yarn publish --major --access public"
   },
   "author": "Tyler Grow",
   "license": "ISC",

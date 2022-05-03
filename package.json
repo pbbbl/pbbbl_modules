@@ -7,9 +7,9 @@
   "scripts": {
     "gitpush":"lerna bootstrap && lerna link && git add . && git commit -m \"prepublish\" && git push",
     "ver": "lerna version --yes --conventional-commits",
-    "release:patch": "yarn gitpush && lerna version --yes --conventional-commits",
-    "release:minor": "yarn gitpush && lerna version --yes --conventional-commits",
-    "release:major": "yarn gitpush && lerna version --yes --conventional-commits",
+    "release:patch": "yarn gitpush && lerna version patch --yes --conventional-commits",
+    "release:minor": "yarn gitpush && lerna version minor --yes --conventional-commits",
+    "release:major": "yarn gitpush && lerna version major --yes --conventional-commits",
     "release": "yarn release:patch",
     "postrelease":"lerna exec \"yarn publish --access public --new-version\""
   },

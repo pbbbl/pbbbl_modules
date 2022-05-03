@@ -11,7 +11,7 @@
     "release:minor": "yarn gitpush && lerna version minor --yes --conventional-commits",
     "release:major": "yarn gitpush && lerna version major --yes --conventional-commits",
     "release": "yarn release:patch",
-    "postrelease":"lerna exec \"yarn publish --access public --new-version\""
+    "postrelease":"lerna exec \"npm publish --access public\""
   },
   "devDependencies": {
     "lerna": "^4.0.0"

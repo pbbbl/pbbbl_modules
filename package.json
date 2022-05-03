@@ -7,17 +7,12 @@
   "scripts": {
     "gitpush":"git add . && git commit -m \"prepublish\" && git push",
     "ver": "lerna bootstrap && yarn gitpush && lerna version --yes --skip-git --no-push",
-
-    "ver:patch": "lerna version patch",
-    "ver:minor": "lerna version minor",
-    "ver:major": "lerna version major",
-
-    "pub": "yarn ver -- patch",
-
-    "pub:patch": "yarn ver -- patch",
-    "pub:minor": "yarn ver -- minor",
-    "pub:major": "yarn ver -- major",
-    "postpub":"lerna exec \"npm publish --access public\""
+    "ver:prompted": "lerna bootstrap && yarn gitpush && lerna version --skip-git --no-push",
+    "release:patch": "yarn ver -- patch",
+    "release:minor": "yarn ver -- minor",
+    "release:major": "yarn ver -- major",
+    "release": "yarn ver:prompted",
+    "postrelease":"lerna exec \"npm publish --access public\""
   },
   "devDependencies": {
     "lerna": "^4.0.0"

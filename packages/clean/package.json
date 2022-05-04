@@ -1,15 +1,14 @@
 {
-    "version": "2.0.13",
+    "version": "2.0.14",
     "name": "@pbbbl/clean",
     "private": false,
     "public": true,
     "main": "dist/index.js",
     "license": "MIT",
     "description": "Fork of clean-deep by nonofgs with option to remove functions",
-
     "scripts": {
         "copy-src-to-dist": "npx copyfiles -u 1 ./src/**/*.* ./dist",
-        "clean-dist":"rimraf ./dist/*",
+        "clean-dist": "rimraf ./dist/*",
         "on-release": "yarn clean-dist && yarn copy-src-to-dist"
     },
     "dependencies": {

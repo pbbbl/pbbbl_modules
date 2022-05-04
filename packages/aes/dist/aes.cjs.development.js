@@ -47,6 +47,31 @@ function decrypt(encrypted, secret) {
   return deserialized.DECRYPTED;
 }
 
+var createSecret = function createSecret() {
+  return crypto.randomBytes(16).toString('hex');
+};
+
+var createKey = createSecret;
+var createIv = /*#__PURE__*/crypto.randomBytes(32).toString('hex');
+
+var randomString = function randomString(n) {
+  if (n === void 0) {
+    n = 32;
+  }
+
+  return crypto.randomBytes(n).toString('hex');
+};
+
+Object.defineProperty(exports, 'randomBytes', {
+    enumerable: true,
+    get: function () {
+        return crypto.randomBytes;
+    }
+});
+exports.createIv = createIv;
+exports.createKey = createKey;
+exports.createSecret = createSecret;
 exports.decrypt = decrypt;
 exports.encrypt = encrypt;
+exports.randomString = randomString;
 //# sourceMappingURL=aes.cjs.development.js.map

@@ -32,7 +32,16 @@ function decrypt(encrypted:string,secret:string):any{
     return deserialized.DECRYPTED;
 }
 
+const createSecret = ()=>randomBytes(16).toString('hex');
+const createKey = createSecret;
+const createIv = randomBytes(32).toString('hex');
+const randomString = (n=32)=>randomBytes(n).toString('hex');
 export {
     encrypt,
     decrypt,
+    createSecret,
+    createKey,
+    createIv,
+    randomString,
+    randomBytes
 }

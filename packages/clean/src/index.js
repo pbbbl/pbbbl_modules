@@ -32,7 +32,7 @@ const configs = {
         emptyStrings: false,
         functions: true,
         NaNValues: true,
-        nullValues: false,
+        nullValues: true,
         undefinedValues: true,
         configId: "json",
     },
@@ -62,7 +62,7 @@ const configs = {
         // @default configId= "undefined";
     }):Object|null; 
  */
-function clean(dataToClean, options) {
+const clean = (dataToClean, options)=>{
     const object = dataToClean;
     options = options ? options : { ...defaultOptions, configId: "_default" };
     const configId = options.configId;
@@ -95,7 +95,7 @@ function clean(dataToClean, options) {
 
         // Exclude empty objects.
         // console.log({ emptyObjects, isPlainObject: isPlainObject(value), isEmpty: isEmpty(value) });
-        if (emptyObjects && isPlainObject(value) && is.emptyObject(value)) {
+        if (emptyObjects && isPlainObject(value) && isEmpty(value)) {
             // console.log("emptyObjects", { value });
             return;
         }
@@ -141,13 +141,21 @@ function clean(dataToClean, options) {
 
         result[key] = value;
     });
-}
+};
 
 function isEmptyString(value) {
     const str = is.string(value) ? `${value}` : false;
     return str ? is.empty(str) || is.empty(str.replace(/\s/g, "")) : false;
 }
-module.exports = clean;
+
+// input
+var cleanExport = function f(dataToClean, options) {
+    return clean(dataToClean, options);
+};
+cleanExport.clean = clean;
+
+module.exports = cleanExport;
+
 
 // function isEmptyObject(obj=null){
 //     if(typeof obj !== 'object'){

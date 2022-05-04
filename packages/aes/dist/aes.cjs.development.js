@@ -61,6 +61,15 @@ var randomString = function randomString(n) {
 
   return crypto.randomBytes(n).toString('hex');
 };
+var index = {
+  encrypt: encrypt,
+  decrypt: decrypt,
+  createSecret: createSecret,
+  createKey: createKey,
+  createIv: createIv,
+  randomString: randomString,
+  randomBytes: crypto.randomBytes
+};
 
 Object.defineProperty(exports, 'randomBytes', {
     enumerable: true,
@@ -72,6 +81,7 @@ exports.createIv = createIv;
 exports.createKey = createKey;
 exports.createSecret = createSecret;
 exports.decrypt = decrypt;
+exports.default = index;
 exports.encrypt = encrypt;
 exports.randomString = randomString;
 //# sourceMappingURL=aes.cjs.development.js.map

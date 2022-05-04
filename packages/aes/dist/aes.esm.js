@@ -56,6 +56,16 @@ var randomString = function randomString(n) {
 
   return randomBytes(n).toString('hex');
 };
+var index = {
+  encrypt: encrypt,
+  decrypt: decrypt,
+  createSecret: createSecret,
+  createKey: createKey,
+  createIv: createIv,
+  randomString: randomString,
+  randomBytes: randomBytes
+};
 
+export default index;
 export { createIv, createKey, createSecret, decrypt, encrypt, randomString };
 //# sourceMappingURL=aes.esm.js.map

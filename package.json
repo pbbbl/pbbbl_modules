@@ -8,12 +8,7 @@
   "scripts": {
     "prerelease": "lerna bootstrap && lerna link && git add . && git commit -m \"pre-release\" && git push",
     "new-version":"lerna version minor --no-git-tag-version --conventional-commits --no-commit-hooks --yes",
-    "release": "npm run new-version && lerna exec \"npm run release\"",
-    "releaseold:package": "lerna exec \"yarn publish --patch --access public --no-git-tag-version --no-commit-hooks\"",
-    "releaseold:patch": "lerna exec \"yarn publish --patch --access public --no-git-tag-version --no-commit-hooks\"",
-    "releaseold:minor": "lerna exec \"yarn publish --minor --access public --no-git-tag-version --no-commit-hooks\"",
-    "releaseold:major": "lerna exec \"yarn publish --major --access public --no-git-tag-version --no-commit-hooks\"",
-    "postrelease": "git add . && git commit -m \"post-release\" && git push"
+    "release:all": "npm run new-version && lerna exec \"npm run release\""
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

@@ -2,7 +2,7 @@
     "name": "@pbbbl/aes",
     "author": "Tyler Grow",
     "module": "dist/aes.esm.js",
-    "version": "0.2.0",
+    "version": "0.1.0",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -22,11 +22,7 @@
         "size": "size-limit",
         "analyze": "size-limit --why",
         "on-release": "tsdx build",
-        "prerelease": "yarn on-release",
-        "release": "yarn publish --minor --access public --no-git-tag-version --no-commit-hooks",
-        "release:patch": "yarn publish --patch --access public --no-git-tag-version --no-commit-hooks",
-        "release:minor": "yarn publish --minor --access public --no-git-tag-version --no-commit-hooks",
-        "release:major": "yarn publish --major --access public --no-git-tag-version --no-commit-hooks"
+        "release": "npm run on-release && npm publish --access public"
     },
     "husky": {
         "hooks": {

@@ -7,10 +7,13 @@
   ],
   "scripts": {
     "prerelease": "lerna bootstrap && lerna link && git add . && git commit -m \"pre-release\" && git push",
-    "release": "lerna run on-relase && lerna exec \"yarn publish --patch --access public --no-git-tag-version --no-commit-hooks\"",
-    "release:patch": "lerna exec \"yarn publish --patch --access public --no-git-tag-version --no-commit-hooks\"",
-    "release:minor": "lerna exec \"yarn publish --minor --access public --no-git-tag-version --no-commit-hooks\"",
-    "release:major": "lerna exec \"yarn publish --major --access public --no-git-tag-version --no-commit-hooks\"",
+    "new-version":"lerna version minor --no-git-tag-version --conventional-commits --no-commit-hooks",
+    "new-release": "lerna run on-release --stream && lerna exec \"npm publish --access public\"",
+    "release": "npm run new-version && lerna run release --stream",
+    "releaseold:package": "lerna exec \"yarn publish --patch --access public --no-git-tag-version --no-commit-hooks\"",
+    "releaseold:patch": "lerna exec \"yarn publish --patch --access public --no-git-tag-version --no-commit-hooks\"",
+    "releaseold:minor": "lerna exec \"yarn publish --minor --access public --no-git-tag-version --no-commit-hooks\"",
+    "releaseold:major": "lerna exec \"yarn publish --major --access public --no-git-tag-version --no-commit-hooks\"",
     "postrelease": "git add . && git commit -m \"post-release\" && git push"
   },
   "devDependencies": {

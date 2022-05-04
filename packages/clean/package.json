@@ -1,5 +1,5 @@
 {
-    "version": "0.4.0",
+    "version": "0.1.0",
     "name": "@pbbbl/clean",
     "private": false,
     "public": true,
@@ -9,7 +9,10 @@
     "scripts": {
         "copy-src-to-dist": "npx copyfiles -u 1 ./src/**/*.* ./dist",
         "clean-dist": "rimraf ./dist/*",
-        "on-release": "yarn clean-dist && yarn copy-src-to-dist"
+        "build": "yarn clean-dist && yarn copy-src-to-dist",
+        "on-release": "yarn build",
+        "prerelease": "yarn build",
+        "release": "yarn publish --minor --no-git-tag-version --no-git-commit-hooks --no"
     },
     "dependencies": {
         "is": "^3.3.0",

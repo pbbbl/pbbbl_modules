@@ -17,7 +17,7 @@ const defaultOptions = {
     emptyArrays: true,
     emptyObjects: true,
     emptyStrings: true,
-    fns: true,
+    functions: true,
     NaNValues: true,
     nullValues: true,
     undefinedValues: true,
@@ -30,14 +30,40 @@ const configs = {
         emptyArrays: false,
         emptyObjects: false,
         emptyStrings: false,
-        fns: true,
+        functions: true,
         NaNValues: true,
         nullValues: false,
         undefinedValues: true,
         configId: "json",
     },
 };
-function clean(object, options) {
+/**
+    function clean(dataToClean:{[x:string]:any}, options:{
+        
+        cleanKeys: string[] | undefined;  
+        // @default cleanKeys= [];
+        cleanValues: string[] | undefined; 
+        // @default cleanValues= [];
+        emptyArrays: boolean | undefined; 
+        // @default emptyArrays= true;
+        emptyObjects: boolean | undefined; 
+        // @default emptyObjects= true;
+        emptyStrings: boolean | undefined; 
+        // @default emptyStrings= true;
+        functions: boolean | undefined; 
+        // @default functions= true;
+        NaNValues: boolean | undefined; 
+        // @default NaNValues= true;
+        nullValues: boolean | undefined; 
+        // @default nullValues= true;
+        undefinedValues: boolean | undefined; 
+        // @default undefinedValues= true;
+        configId: "json" | undefined;
+        // @default configId= "undefined";
+    }):Object|null; 
+ */
+function clean(dataToClean, options) {
+    const object = dataToClean;
     options = options ? options : { ...defaultOptions, configId: "_default" };
     const configId = options.configId;
     const config = is.undefined(configs[configId]) ? configs._default : configs[configId];
@@ -46,7 +72,7 @@ function clean(object, options) {
         ...config,
         ...options,
     };
-    let { cleanKeys, cleanValues, emptyArrays, emptyObjects, emptyStrings, fns, NaNValues, nullValues, undefinedValues } = options;
+    let { cleanKeys, cleanValues, emptyArrays, emptyObjects, emptyStrings, functions, NaNValues, nullValues, undefinedValues } = options;
 
     // console.log({ configId: options.configId, config });
 
@@ -90,8 +116,8 @@ function clean(object, options) {
         }
 
         // Exclude functions.
-        if (fns && typeof value == "function") {
-            // console.log("fns", { value });
+        if (functions && typeof value == "function") {
+            // console.log("functions", { value });
             return;
         }
 

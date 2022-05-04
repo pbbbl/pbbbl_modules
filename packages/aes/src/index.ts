@@ -45,3 +45,12 @@ export {
     randomString,
     randomBytes
 }
+export default {
+    encrypt,
+    decrypt,
+    createSecret,
+    createKey,
+    createIv,
+    randomString,
+    randomBytes
+}

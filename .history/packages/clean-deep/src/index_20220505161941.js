@@ -126,12 +126,12 @@ function clean(
 
     // Exclude specific keys.
     if (configKeys && configKeys.includes(key)) {
-      // console.log('\nRemoving key\n', key, '\n', value, '\n....\n');
+      console.log('\nRemoving key\n', key, '\n', value, '\n....\n');
       return;
     }
     // Recurse into arrays and objects.
     if (isRecursable) {
-      // console.log('recurse @', key);
+      console.log('recurse @', key);
       value = clean(value, options, true);
     }
 
@@ -157,63 +157,63 @@ function clean(
 
     // Exclude specific values.
     if (configValues && configValues.includes(value)) {
-      // console.log('\nRemoving value\n', key, '\n', value, '\n....\n');
+      console.log('\nRemoving value\n', key, '\n', value, '\n....\n');
       return;
     }
 
     // Exclude empty objects.
     if (configIsEmptyObject && isObject(value) && isEmptyObject(value)) {
-      // console.log('\nRemoving empty object\n', key, '\n', value, '\n....\n');
+      console.log('\nRemoving empty object\n', key, '\n', value, '\n....\n');
       return;
     }
     // Exclude empty arrays.
     if (configIsEmptyArray && isArray(value) && isEmptyArray(value)) {
-      // console.log('\nRemoving empty array\n', key, '\n', value, '\n....\n');
+      console.log('\nRemoving empty array\n', key, '\n', value, '\n....\n');
       return;
     }
     // Exclude empty strings.
     if (configIsEmptyString && isString(value) && isEmptyString(value)) {
-      // console.log('\nRemoving empty string\n', key, '\n', value, '\n....\n');
+      console.log('\nRemoving empty string\n', key, '\n', value, '\n....\n');
       return;
     }
 
     // Exclude NaN values.
     // const NaNValues = typeof config.isNaN !== 'undefined' && config.isNaN === true;
     if (configIsNaN && isNaN(value)) {
-      // console.log('\nRemoving NaN\n', key, '\n', value, '\n....\n');
+      console.log('\nRemoving NaN\n', key, '\n', value, '\n....\n');
       return;
     }
 
     // Exclude functions.
     if (configIsFunction && isFunction(value)) {
-      // console.log('\nRemoving function\n', key, '\n', value, '\n....\n');
+      console.log('\nRemoving function\n', key, '\n', value, '\n....\n');
       return;
     }
 
     // Exclude null values.
     const nullValues = isDefined(config.isNull) && config.isNull === true;
     if (configIsNull && isNull(value)) {
-      // console.log('\nRemoving null\n', key, '\n', value, '\n....\n');
+      console.log('\nRemoving null\n', key, '\n', value, '\n....\n');
       return;
     }
 
     // Exclude undefined values.
 
     if (configIsUndefined && isUndefined(value)) {
-      // console.log('\nRemoving undefined\n', key, '\n', value, '\n....\n');
+      console.log('\nRemoving undefined\n', key, '\n', value, '\n....\n');
       return;
     }
     // Exclude error values.
 
     if (configIsError && value instanceof Error) {
-      // console.log('\nRemoving error\n', key, '\n', value, '\n....\n');
+      console.log('\nRemoving error\n', key, '\n', value, '\n....\n');
       return;
     }
 
     // Append when recursing arrays.
 
     if (isArray(result)) {
-      // console.log('append recursive array', { value });
+      console.log('append recursive array', { value });
       return result.push(value);
     }
 
@@ -280,7 +280,7 @@ module.exports = clean;
 //
 //
 
-// // console.log({
+// console.log({
 //   clean,
 // });
 // try {
@@ -318,7 +318,7 @@ module.exports = clean;
 //       {
 //         id: 'default',
 //         transformEach: (value, key) => {
-//           // console.log('transformEach', { value, key });
+//           console.log('transformEach', { value, key });
 //           if (key === 'toTrue') return true;
 //           if (key === 'toFalse') return false;
 //           if (key === 'toNull') return null;
@@ -424,7 +424,7 @@ module.exports = clean;
 //       { values: ['removeValue'] }
 //     ),
 //   };
-//   // console.log('cleaned', tests);
+//   console.log('cleaned', tests);
 // } catch (error) {
-//   // console.warn(error);
+//   console.warn(error);
 // }

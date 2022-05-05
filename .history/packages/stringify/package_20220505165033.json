@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -32,22 +32,21 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "@pbbbl/clean-deep",
+  "name": "serialize",
   "author": "Tyler Grow",
-  "module": "dist/clean-deep.esm.js",
+  "module": "dist/serialize.esm.js",
   "size-limit": [
     {
-      "path": "dist/clean-deep.cjs.production.min.js",
+      "path": "dist/serialize.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/clean-deep.esm.js",
+      "path": "dist/serialize.esm.js",
       "limit": "10 KB"
     }
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.8",
-    "@types/is": "^0.0.21",
     "husky": "^7.0.4",
     "size-limit": "^7.0.8",
     "tsdx": "^0.14.1",
@@ -55,11 +54,9 @@
     "typescript": "^4.6.4"
   },
   "dependencies": {
+    "@pbbbl/clean-deep": "^1.1.0",
     "@pbbbl/is": "^0.1.0",
     "copy-anything": "^3.0.2",
-    "deep-freeze": "^0.0.1",
-    "is-json": "^2.0.1",
-    "lodash.transform": "^4.6.0",
-    "traverse": "^0.6.6"
+    "is-json": "^2.0.1"
   }
 }

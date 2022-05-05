@@ -6,8 +6,8 @@ declare global {
     
 
     type CleanOptions = {
-        config?: undefined | "default" | "json"|"firestore"|"custom";
-        configId?: undefined | "default" | "json"|"firestore"|"custom";
+        config?: undefined | "default" | "json"|"firestore";
+        configId?: undefined | "default" | "json"|"firestore";
         keys?: string[];
         values?: any[],
         isNaN?:boolean;

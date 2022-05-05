@@ -17,10 +17,7 @@
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
-    "analyze": "size-limit --why",
-
-    "on-release": "tsdx build",
-    "release": "npm run build && npm publish --access public"
+    "analyze": "size-limit --why"
   },
   "peerDependencies": {},
   "husky": {
@@ -34,7 +31,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "@pbbbl/is",
+  "name": "is",
   "author": "Tyler Grow",
   "module": "dist/is.esm.js",
   "size-limit": [

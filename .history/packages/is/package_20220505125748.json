@@ -34,7 +34,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "@pbbbl/is",
+  "name": "is",
   "author": "Tyler Grow",
   "module": "dist/is.esm.js",
   "size-limit": [

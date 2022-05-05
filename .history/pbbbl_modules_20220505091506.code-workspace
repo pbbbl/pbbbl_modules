@@ -1,0 +1,17 @@
+{
+	"folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": "../test-pbbbl_modules"
+        },
+        {
+            "path": "../testweb"
+        }
+    ],
+    "settings": {
+        "js/ts.implicitProjectConfig.experimentalDecorators": true,
+        "js/ts.implicitProjectConfig.checkJs": true
+    }
+}

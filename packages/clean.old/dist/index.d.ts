@@ -12,4 +12,5 @@ export type CleanOptions = {
     fns: boolean,
     nullValues?: boolean;
     undefinedValues?: boolean;
+    configId?: string;
 };

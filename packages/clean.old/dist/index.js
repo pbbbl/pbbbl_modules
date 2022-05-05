@@ -21,6 +21,7 @@ const defaultOptions = {
     NaNValues: true,
     nullValues: true,
     undefinedValues: true,
+    configId: null
 };
 const configs = {
     _default: { ...defaultOptions },
@@ -41,25 +42,17 @@ const configs = {
     function clean(dataToClean:{[x:string]:any}, options:{
         
         cleanKeys: string[] | undefined;  
-        // @default cleanKeys= [];
         cleanValues: string[] | undefined; 
-        // @default cleanValues= [];
         emptyArrays: boolean | undefined; 
-        // @default emptyArrays= true;
         emptyObjects: boolean | undefined; 
-        // @default emptyObjects= true;
         emptyStrings: boolean | undefined; 
-        // @default emptyStrings= true;
         functions: boolean | undefined; 
-        // @default functions= true;
         NaNValues: boolean | undefined; 
-        // @default NaNValues= true;
         nullValues: boolean | undefined; 
-        // @default nullValues= true;
         undefinedValues: boolean | undefined; 
-        // @default undefinedValues= true;
-        configId: "json" | undefined;
-        // @default configId= "undefined";
+
+        configId: string | null | undefined;
+
     }):Object|null; 
  */
 const clean = (dataToClean, options)=>{

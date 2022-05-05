@@ -2,7 +2,7 @@
     "name": "@pbbbl/aes",
     "author": "Tyler Grow",
     "module": "dist/aes.esm.js",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
@@ -46,7 +46,10 @@
         }
     ],
     "dependencies": {
+        "@pbbbl/clean": "^0.11.0",
+        "aes": "^0.1.0",
         "aes-256-gcm": "^1.0.3",
+        "clean": "^4.0.2",
         "crypto-browserify": "^3.12.0",
         "fast-safe-stringify": "^2.1.1",
         "randombytes": "^2.1.0",

@@ -1,28 +1,58 @@
 {
-    "version": "0.11.0",
-    "name": "@pbbbl/clean",
-    "private": false,
-    "public": true,
-    "main": "dist/index.js",
-    "license": "MIT",
-    "description": "Fork of clean-deep by nonofgs with option to remove functions",
-    "scripts": {
-        "copy-src-to-dist": "npx copyfiles -u 1 ./src/**/*.* ./dist",
-        "clean-dist": "rimraf ./dist/*",
-        "build": "npm run clean-dist && npm run copy-src-to-dist",
-        "on-release": "npm run build",
-        "release": "npm run build && npm publish --access public"
-    },
-    "dependencies": {
-        "is": "^3.3.0",
-        "jsonfile": "^6.1.0",
-        "lodash.isempty": "^4.4.0",
-        "lodash.isfunction": "^3.0.9",
-        "lodash.isplainobject": "^4.0.6",
-        "lodash.transform": "^4.6.0"
-    },
-    "devDependencies": {
-        "copyfiles": "^2.4.1",
-        "rimraf": "^3.0.2"
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
     }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "clean",
+  "author": "Tyler Grow",
+  "module": "dist/clean.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/clean.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/clean.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^7.0.8",
+    "@types/is": "^0.0.21",
+    "husky": "^7.0.4",
+    "size-limit": "^7.0.8",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "is": "^3.3.0"
+  }
 }

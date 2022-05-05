@@ -13,6 +13,14 @@
 **/.ignore/
 **/.ignore/*
 
+.history
+.history/
+.history/*
+**/.history
+**/.history/
+**/.history/*
+
+
 node_modules
 node_modules/
 node_modules/*

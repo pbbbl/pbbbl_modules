@@ -19,5 +19,7 @@ declare global {
         isEmptyArray?:boolean;
         isEmptyObject?:boolean;
         isEmptyString?:boolean;
+        isJSON?:boolean;
+        parseJSON?:boolean;
     }
 }    

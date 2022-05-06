@@ -4,7 +4,8 @@ const {isArray, isEmptyArray, isDefined,isObject} = require('@pbbbl/is');
 const isJSON = require('is-json');
 /**
  * @param {*} value
- * @param {*} options
+ * @param {*} replacer
+ * @param {*} space
  */
 const stringify = (value,replacer=null,space=null)=>{
     // let rest = [JSONfn,JSONOptions];
@@ -36,6 +37,13 @@ const stringify = (value,replacer=null,space=null)=>{
         return;
     }
 }
+
+/**
+ * 
+ * @param {*} text 
+ * @param {*} reviver 
+ * @returns 
+ */
 const parse= (text,reviver=null)=>{
     if(isJSON(text)){
         try {

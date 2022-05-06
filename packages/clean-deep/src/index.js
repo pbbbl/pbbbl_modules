@@ -1,8 +1,9 @@
 const transform = require('lodash.transform');
 const deepFreeze = require('deep-freeze');
 const { copy } = require('copy-anything');
-const isJSON = require('is-json');
+
 const {
+    isJSON,
   isDefined,
   isString,
   isUndefined,
@@ -62,7 +63,8 @@ function clean(
     })
   );
   return transform(object, (result, value, key) => {
-    // parse json if possible
+      
+      // parse json if possible
     if (isString(value) && isJSON(value)) {
       try {
         const parsed = JSON.parse(value);
@@ -71,6 +73,11 @@ function clean(
       } catch {
         // do nothing
       }
+    }
+    // get js value from string if possible (i.e. 'true' => true)
+    if(isString(value) && !isEmptyString(value)) {
+        const jsValue = parseStringValue(`${value}`);
+        value = isDefined(jsValue) ? jsValue : undefined;
     }
 
     // Exclude specific keys.
@@ -155,6 +162,12 @@ function clean(
       }
     }
 
+    
+        
+
+
+    
+
     // Exclude specific values.
     if (configValues && configValues.includes(value)) {
       // console.log('\nRemoving value\n', key, '\n', value, '\n....\n');
@@ -224,7 +237,6 @@ function createConfigs() {
   const buildConfig = (id, overrides, allFalse = false) => {
     const c = {
       config: id, //config?: undefined | "default" | "json";
-      configId: id, //configId?: undefined | "default" | "json";
       isUndefined: allFalse ? false : true, //isUndefined?:boolean;
       isError: allFalse ? false : true, //isError?:boolean;
       isFunction: allFalse ? false : true, //isFunction?:boolean;
@@ -236,9 +248,9 @@ function createConfigs() {
       isEmptyArray: false, //isEmptyArray?:boolean;
       isEmptyObject: false, //isEmptyObject?:boolean;
       isEmptyString: false, //isEmptyString?:boolean;
-      isJson: false, //isJson?:boolean;
+      isJSON: false, //isJSON?:boolean;
       transformEach: null, //transformEach?:null | ((value: any, key: string,ctx:{root:any,current:any,config:any}) => any);
-      parseJson: true, //parseJson?:boolean;
+      parseJSON: true, //parseJSON?:boolean;
       ...overrides,
     };
     return c;
@@ -257,7 +269,7 @@ function createConfigs() {
   };
 }
 function createOptions(config = configs.default) {
-  let rootConfigId = (config.id || config.configId || 'default').toLowerCase();
+  let rootConfigId = isDefined(config.config) ? config.config : 'default';
   let rootConfig;
   if (typeof configs[rootConfigId] === 'undefined') {
     rootConfigId = 'default';
@@ -275,156 +287,258 @@ function createOptions(config = configs.default) {
 // EXPORT
 module.exports = clean;
 
-//
-//
-//
-//
 
-// // console.log({
-//   clean,
-// });
-// try {
-//   const testError = new Error('testError');
-//   const tests = {
-//     custom: clean(
-//       {
-//         a: 1,
-//         b: undefined,
-//         c: null,
-//         d: testError,
-//         e: () => {},
-//         f: {
-//           a: 1,
-//           b: undefined,
-//           c: null,
-//           d: testError,
-//           e: () => {},
-//         },
-//         g: [1, undefined, null, testError, () => {}],
-//       },
-//       { config: 'custom',isUndefined:false }
-//     ),
-//     parseAndTransform: clean(
-//       {
-//         a: { alreadyParsed: true },
-//         b: JSON.stringify({
-//           alreadyParsed: false,
-//           toTrue: false,
-//           toFalse: true,
-//           toNull: false,
-//           toUndefined: false,
-//         }),
-//       },
-//       {
-//         id: 'default',
-//         transformEach: (value, key) => {
-//           // console.log('transformEach', { value, key });
-//           if (key === 'toTrue') return true;
-//           if (key === 'toFalse') return false;
-//           if (key === 'toNull') return null;
-//           if (key === 'toUndefined') return undefined;
-//           return value;
-//         },
-//       }
-//     ),
-//     parseJson: clean(
-//       {
-//         a: { alreadyParsed: true },
-//         b: JSON.stringify({ alreadyParsed: false }),
-//       },
-//       { id: 'default' }
-//     ),
-//     cleanNaN: clean(
-//       {
-//         removed: '1',
-//         kept: 2,
-//       },
-//       { isNaN: true }
-//     ),
-//     cleanNull: clean(
-//       {
-//         removed: null,
-//         kept: true,
-//       },
-//       { isNull: true }
-//     ),
-//     cleanUndefined: clean(
-//       {
-//         removed: undefined,
-//         kept: true,
-//       },
-//       { isUndefined: true }
-//     ),
-//     cleanError: clean(
-//       {
-//         removed: testError,
-//         kept: true,
-//       },
-//       { isError: true }
-//     ),
-//     cleanFunction: clean(
-//       {
-//         removed: function() {},
-//         kept: true,
-//       },
-//       { isFunction: true }
-//     ),
-//     cleanEmpty: clean(
-//       {
-//         removedString: '',
-//         removedObject: {},
-//         removedArray: [],
-//         keptString: 'kept',
-//         keptObject: { kept: true },
-//         keptArray: ['kept'],
-//       },
-//       { isEmpty: true }
-//     ),
-//     cleanArray: clean(
-//       {
-//         removed: [],
-//         kept: ['kept'],
-//       },
-//       { isEmptyArray: true }
-//     ),
-//     cleanArray: clean(
-//       {
-//         removed: {},
-//         kept: { isKept: true },
-//       },
-//       { isEmptyObject: true }
-//     ),
-//     cleanEmptyString: clean(
-//       {
-//         removed: '    ',
-//         kept: 'kept',
-//       },
-//       { isEmptyString: true }
-//     ),
-//     cleanKeys: clean(
-//       {
-//         removeKey: 'removeKey',
-//         keptKey: 'keptKey',
-//         obj: {
-//           keptKey: 'keptKey',
-//           removeKey: 'removeKey',
-//         },
-//       },
-//       { keys: ['removeKey'] }
-//     ),
-//     cleanValues: clean(
-//       {
-//         removed: 'removeValue',
-//         kept: 'keptValue',
-//         obj: {
-//           kept: 'keptValue',
-//           removed: 'removeValue',
-//         },
-//       },
-//       { values: ['removeValue'] }
-//     ),
-//   };
-//   // console.log('cleaned', tests);
-// } catch (error) {
-//   // console.warn(error);
-// }
+
+
+
+
+function parseStringValue(value){
+    
+    const numRegex = /[\.|0-9]/g;
+    const floatRegex = /^[\.|0-9]\d*(\.\d+)?$/g;
+    const intRegex = /^[\.|0-9]\d*$/g;
+    if(isString(value) && !isEmptyString(value)) {
+            console.log('parseStringValue', value);
+            let v = value.replace(/\s/g, '');
+            if(v.match(/[A-Z]/g)){
+                v = `${v}`.toLowerCase();
+            }
+            value = `${v}`;
+            v=`${value}`
+            if(v == 'true'){
+                v = true;
+                return true;
+            }
+            if(v == 'false'){
+
+                return false;
+            }
+            try {
+                if(v.match(numRegex)){
+                    if(v.match(floatRegex)){
+                        try {
+                            const parsedFloat = parseFloat(`${value}`);
+                            if(!isNaN(parsedFloat)){
+
+                                return parsedFloat;
+                            }
+                        } catch {
+                            try {
+                                const parsedInt= parseInt(value);
+                                if(!isNaN(parsedInt)){
+                                    return parsedInt;
+                                }
+                            } catch {
+                                // do nothing
+                            }
+                        }
+                    } else {
+
+                        if(value.match(intRegex)){
+                            try {
+
+                                const parsedInt2 = parseInt(value);
+                                if(!isNaN(parsedInt2)){
+                                    return parsedInt2;
+                                }
+                            } catch {
+                                // do nothing
+                            }
+                        }
+                        
+                    }
+                }
+            } catch {
+                // do nothing
+            }
+            if(v == 'null'){
+                return null;
+            }
+            if(v == 'undefined'){
+                return undefined;
+            }
+            if(v == 'nan'){
+                return NaN;
+
+            }
+            // if(v == 'Infinity'){
+            //     return Infinity;
+            // }
+            // if(v === '-Infinity'){
+            //     return -Infinity;
+            // }
+            return v;
+        } else {
+            return value
+        }
+    }
+
+
+// //////////////////////////////////////////////////////////////////////////////
+// //
+// // TESTS
+// //
+// //////////////////////////////////////////////////////////////////////////////
+    // try {
+    //     const testError = new Error('testError');
+    //     const tests = {
+    //         stringsParsedToJS:clean({
+
+    //                 num: '1',
+    //                 dec: '10.1',
+    //                 dec2: '0.1',
+    //                 dec3: '.1',
+    //                 boolTrue: 'true',
+    //                 boolFalse: 'false',
+    //                 nullVal: 'null',
+    //                 undefinedVal: 'undefined',
+    //                 nanVal: 'NaN',
+
+    //         },{
+    //             config: 'default',
+    //             isNull: false,
+    //             isUndefined: false,
+    //         }),
+    //       custom: clean(
+    //         {
+    //           a: 1,
+    //           b: undefined,
+    //           c: null,
+    //           d: testError,
+    //           e: () => {},
+    //           f: {
+    //             a: 1,
+    //             b: undefined,
+    //             c: null,
+    //             d: testError,
+    //             e: () => {},
+    //           },
+    //           g: [1, undefined, null, testError, () => {}],
+    //         },
+    //         { config: 'custom',isUndefined:false }
+    //       ),
+    //       parseAndTransform: clean(
+    //         {
+    //           a: { alreadyParsed: true },
+    //           b: JSON.stringify({
+    //             alreadyParsed: false,
+    //             toTrue: false,
+    //             toFalse: true,
+    //             toNull: false,
+    //             toUndefined: false,
+    //           }),
+    //         },
+    //         {
+    //           id: 'default',
+    //           transformEach: (value, key) => {
+    //             // console.log('transformEach', { value, key });
+    //             if (key === 'toTrue') return true;
+    //             if (key === 'toFalse') return false;
+    //             if (key === 'toNull') return null;
+    //             if (key === 'toUndefined') return undefined;
+    //             return value;
+    //           },
+    //         }
+    //       ),
+    //       parseJSON: clean(
+    //         {
+    //           a: { alreadyParsed: true },
+    //           b: JSON.stringify({ alreadyParsed: false }),
+    //         },
+    //         { id: 'default' }
+    //       ),
+    //       cleanNaN: clean(
+    //         {
+    //           removed: '1',
+    //           kept: 2,
+    //         },
+    //         { isNaN: true }
+    //       ),
+    //       cleanNull: clean(
+    //         {
+    //           removed: null,
+    //           kept: true,
+    //         },
+    //         { isNull: true }
+    //       ),
+    //       cleanUndefined: clean(
+    //         {
+    //           removed: undefined,
+    //           kept: true,
+    //         },
+    //         { isUndefined: true }
+    //       ),
+    //       cleanError: clean(
+    //         {
+    //           removed: testError,
+    //           kept: true,
+    //         },
+    //         { isError: true }
+    //       ),
+    //       cleanFunction: clean(
+    //         {
+    //           removed: function() {},
+    //           kept: true,
+    //         },
+    //         { isFunction: true }
+    //       ),
+    //       cleanEmpty: clean(
+    //         {
+    //           removedString: '',
+    //           removedObject: {},
+    //           removedArray: [],
+    //           keptString: 'kept',
+    //           keptObject: { kept: true },
+    //           keptArray: ['kept'],
+    //         },
+    //         { isEmpty: true }
+    //       ),
+    //       cleanArray: clean(
+    //         {
+    //           removed: [],
+    //           kept: ['kept'],
+    //         },
+    //         { isEmptyArray: true }
+    //       ),
+    //       cleanArray: clean(
+    //         {
+    //           removed: {},
+    //           kept: { isKept: true },
+    //         },
+    //         { isEmptyObject: true }
+    //       ),
+    //       cleanEmptyString: clean(
+    //         {
+    //           removed: '    ',
+    //           kept: 'kept',
+    //         },
+    //         { isEmptyString: true }
+    //       ),
+    //       cleanKeys: clean(
+    //         {
+    //           removeKey: 'removeKey',
+    //           keptKey: 'keptKey',
+    //           obj: {
+    //             keptKey: 'keptKey',
+    //             removeKey: 'removeKey',
+    //           },
+    //         },
+    //         { keys: ['removeKey'] }
+    //       ),
+    //       cleanValues: clean(
+    //         {
+    //           removed: 'removeValue',
+    //           kept: 'keptValue',
+    //           obj: {
+    //             kept: 'keptValue',
+    //             removed: 'removeValue',
+    //           },
+    //         },
+    //         { values: ['removeValue'] }
+    //       ),
+    //     };
+    //     console.log('cleaned', tests);
+    //   } catch (error) {
+    //       console.log('ERROR @ tests clean-deep')
+    //     console.warn(error);
+    //   }

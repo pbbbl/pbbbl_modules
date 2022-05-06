@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -55,7 +55,7 @@
     "typescript": "^4.6.4"
   },
   "dependencies": {
-    "@pbbbl/is": "^0.1.0",
+    "@pbbbl/is": "^1.1.0",
     "copy-anything": "^3.0.2",
     "deep-freeze": "^0.0.1",
     "is-json": "^2.0.1",
